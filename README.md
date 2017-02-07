@@ -30,8 +30,8 @@ Repo for Web App From Scratch course @ HvA Minor Web Development
 - Cross-browser compatibiliteit zit bijna altijd ingebakken
 
 ## Bronnen:
-https://davidwalsh.name/6-reasons-to-use-javascript-libraries-frameworks
-https://www.qdigitalstudio.com/library/the-pros-and-cons-of-using-a-front-end-framework
+- https://davidwalsh.name/6-reasons-to-use-javascript-libraries-frameworks
+- https://www.qdigitalstudio.com/library/the-pros-and-cons-of-using-a-front-end-framework
 
 # Opdracht 2: Voor/nadelen Single Page Application
 
@@ -60,7 +60,7 @@ https://www.qdigitalstudio.com/library/the-pros-and-cons-of-using-a-front-end-fr
 - Makkelijker uit te breiden naar mobiele applicatie omdat de backend code herbruikt kan worden
 
 ## Bronnen:
-https://www.apicasystem.com/blog/speed-up-the-pros-and-cons-of-single-page-sites/
-https://www.dialogtech.com/blog/technically-speaking/technically-speaking-the-pros-and-cons-of-single-page-applications-spas
-https://www.linkedin.com/pulse/why-single-page-application-pros-cons-ravi-hamsa
-https://neoteric.eu/single-page-application-vs-multiple-page-application
+- https://www.apicasystem.com/blog/speed-up-the-pros-and-cons-of-single-page-sites/
+- https://www.dialogtech.com/blog/technically-speaking/technically-speaking-the-pros-and-cons-of-single-page-applications-spas
+- https://www.linkedin.com/pulse/why-single-page-application-pros-cons-ravi-hamsa
+- https://neoteric.eu/single-page-application-vs-multiple-page-application
