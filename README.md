@@ -1,4 +1,4 @@
-# web-app-from-scratch
+# Web App From Scratch - Minor Webdevelopment
 Repo for Web App From Scratch course @ HvA Minor Web Development
 
 # Opdracht 1: Voor/nadelen Javascript Libraries 
