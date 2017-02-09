@@ -6,10 +6,10 @@
 
 // =============================================
 
-// Engage strict mode
-"use strict";
-
 (function() {
+    // Engage strict mode
+    "use strict";
+
     console.log("IIFE werkt!");
 
 
