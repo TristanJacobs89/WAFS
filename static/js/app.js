@@ -14,7 +14,7 @@
 
 
     // Main app initializer
-    var app = {
+    var _app = {
 
         // Routes initializer
         init: function () {
@@ -22,7 +22,7 @@
         }
     };
 
-    var routes = {
+    var _routes = {
         init:  function () {
             // Als de hash verandert, voer de 'toggle' functie van het object 'sections' uit
             window.onhashchange =  function () {
@@ -31,21 +31,21 @@
         }
     };
 
-    var sections = {
+    var _sections = {
         toggle: function () {
             // Haal even alle secties op en ram ze in een variabel
-            var sectionList = document.querySelectorAll('section');
+            var _sectionList = document.querySelectorAll('section');
 
             // Voor elke sectie, voor de functie uit
-            sectionList.forEach(function (section) {
+            _sectionList.forEach(function (_section) {
 
                 // Als de hash gelijk is aan de section ID, haal dan de class 'hide' weg
-                if (location.hash === "#" + section.id) {
-                    section.classList.remove("hide");
+                if (location.hash === "#" + _section.id) {
+                    _section.classList.remove("hide");
 
                 // Als de hash niet gelijk is aan de section Id, voeg de class 'hide' toe
                 } else {
-                    section.classList.add("hide");
+                    _section.classList.add("hide");
 
                 }
             });
