@@ -64,3 +64,7 @@ Repo for Web App From Scratch course @ HvA Minor Web Development
 - https://www.dialogtech.com/blog/technically-speaking/technically-speaking-the-pros-and-cons-of-single-page-applications-spas
 - https://www.linkedin.com/pulse/why-single-page-application-pros-cons-ravi-hamsa
 - https://neoteric.eu/single-page-application-vs-multiple-page-application
+
+
+# Opdracht 5 - Opzet SPA
+https://iamt.nl/minor/wafs
