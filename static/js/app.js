@@ -6,7 +6,7 @@
 
 // =============================================
 
-// Engage nazi-mode
+// Engage strict mode
 "use strict";
 
 (function() {
