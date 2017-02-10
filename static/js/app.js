@@ -33,7 +33,7 @@
 
     var _sections = {
         toggle: function () {
-            // Haal even alle secties op en ram ze in een variabel
+            // Haal even alle secties op en ram ze in een array
             var _sectionList = document.querySelectorAll('section');
 
             // Voor elke sectie, voor de functie uit
