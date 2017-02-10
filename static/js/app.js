@@ -18,7 +18,7 @@
 
         // Routes initializer
         init: function () {
-            routes.init();
+            _routes.init();
         }
     };
 
@@ -26,7 +26,7 @@
         init:  function () {
             // Als de hash verandert, voer de 'toggle' functie van het object 'sections' uit
             window.onhashchange =  function () {
-                sections.toggle();
+                _sections.toggle();
             }
         }
     };
@@ -53,6 +53,6 @@
     };
 
     // Gooi de app maar aan
-    app.init();
+    _app.init();
 
 })();
