@@ -6,12 +6,17 @@
     <link rel="stylesheet" href="./static/css/style.css">
 </head>
 <body>
+<h1>Just another GIF search engine...</h1>
 <form method="post">
     <input id="search" type="search">
-    <button id="submit">Zoeken</button>
+    <button id="submit"><img src="https://d30y9cdsu7xlg0.cloudfront.net/png/95-200.png"></button>
 </form>
 
-<div id="images"></div>
+<img id="loading" class="hidden" src="./static/img/loading.gif">
+<h2 id="search-result"></h2>
+<div id="images">
+
+</div>
 
 <script src="node_modules/aja/aja.min.js"></script>
 <script src="static/js/app.js"></script>
