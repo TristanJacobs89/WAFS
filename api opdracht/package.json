@@ -1,0 +1,15 @@
+ {
+  "name": "api-opdracht",
+  "version": "0.0.1",
+  "description": "opdracht voor Web App From Scratch week 2",
+  "main": "index.html",
+  "dependencies": {
+    "aja": "^0.4.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "tristan jacobs",
+  "license": "ISC"
+}
