@@ -22,7 +22,6 @@
         _loading = document.getElementById('loading');
 
         // clickhandler, executes main data retrieval function
-
         _submit.addEventListener("click", function () {
             event.preventDefault();
             getSearchResults();
@@ -30,7 +29,7 @@
         
         function getSearchResults () {
 
-            var _urlForAPI = 'http://api.giphy.com/v1/stickers/search?q=' + _searchBox.value + '&api_key=dc6zaTOxFJmzC&limit=100';
+            var _urlForAPI = 'https://api.giphy.com/v1/stickers/search?q=' + _searchBox.value + '&api_key=dc6zaTOxFJmzC&limit=100';
 
             // Show loading icon
             _loading.classList.remove('hidden');
@@ -39,7 +38,7 @@
                 // url =
                 .url(_urlForAPI)
 
-                //obj is a javascript object returned from Giphy API
+                // obj is a javascript object returned from Giphy API
                 .on('success', function(obj){
                     console.log(obj);
 
@@ -51,9 +50,8 @@
 
                     var _html = '';
 
-                    //map the objects received with AJA and for each object,
+                    // map the objects received with AJA and for each object,
                     // set the <img src attribute to the 'embed_url' property of the object it loops over
-
                     obj.data.map(function(element){
                         _html += "<img src='https://i.giphy.com/" + element.id + ".gif" + "'>";
                     })
