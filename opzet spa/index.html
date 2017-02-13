@@ -21,7 +21,7 @@
             </header>
             <ul>
                 <a href="#start"><li>Start</li></a>
-                <a href="#list"><li>Best Practices</li></a>
+                <a href="#list"><li>Gif Search</li></a>
             </ul>
         </div>
     </nav>
@@ -33,15 +33,31 @@
 
         </section>
 
-        <section id="list">
-            <h2>Dit is de Best Practices sectie.</h2>
-            <p>In deze sectie komt waarschijnlijk een overzicht van alle HTML/CSS/JavaScript best practices en patterns
-            die we verzamelen gedurende het eerste blok. Wellicht gedurende de hele minor.</p>
+        <section id="list" class="hide">
+
+            <h2>Just another GIF search engine</h2>
+
+            <form method="post">
+                <input id="search" type="search">
+                <button id="submit"><img src="https://d30y9cdsu7xlg0.cloudfront.net/png/95-200.png"></button>
+            </form>
+
+            <img id="loading" class="hide" src="./static/img/loading.gif">
+            <h2 id="search-result"></h2>
+            <div id="images">
+
+            </div>
+
+
+
+
+
+
         </section>
     </div>
 
 </main>
-
+<script src="static/js/aja/aja.min.js"></script>
 <script src="static/js/app.js"></script>
 </body>
 

@@ -1,0 +1,67 @@
+body {
+    background: #333;
+    color: white;
+    max-width: 90vw;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: "Avenir Next Condensed", sans-serif;
+}
+
+form {
+    margin: 0 0 3em 0;
+    display: flex;
+    width: 100%;
+}
+
+[type="search"] {
+    -webkit-appearance: none;
+    height: 2em;
+    flex: 11;
+    font-size: 2em;
+    text-align: center;
+    border: none;
+    margin-right: 0;
+    font-family: inherit;
+}
+#submit {
+    -webkit-appearance: none;
+    border: none;
+    flex: 1;
+    background: lightskyblue;
+}
+
+#submit:hover {
+    background: deepskyblue;
+    cursor: pointer;
+}
+#submit:focus {
+    outline: none;
+}
+#submit img {
+    height: 3em;
+}
+
+#images {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%;
+}
+
+#images img {
+    margin: 0.7em;
+    height: 10em;
+    max-width: 25%;
+}
+
+.hidden {
+    display: none;
+}
+
+#loading {
+    width: 5em;
+    margin: 0 auto;
+}
