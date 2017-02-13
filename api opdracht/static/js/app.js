@@ -1,7 +1,17 @@
 /* Created by Tristan Jacobs on 13-02-17.
    Using AJA - Src: http://krampstudio.com/aja.js/
    & Giphy API
+
+   =============================================
+
+   IDEAS:
+   - Add option to choose between stickers or gifs
+   - Share
+   - Use multiple sources
+   - Previous search (with cookies)
 */
+
+
 
 (function(){
 "use strict";
@@ -20,7 +30,7 @@
         
         function getSearchResults () {
 
-            var _urlForAPI = 'http://api.giphy.com/v1/gifs/search?q=' + _searchBox.value + '&api_key=dc6zaTOxFJmzC';
+            var _urlForAPI = 'http://api.giphy.com/v1/stickers/search?q=' + _searchBox.value + '&api_key=dc6zaTOxFJmzC&limit=100';
 
             // Show loading icon
             _loading.classList.remove('hidden');
