@@ -5,6 +5,7 @@
 
 html {
     font-family: "Avenir Next Condensed", sans-serif;
+    color: #333;
     font-size: 80%;
     line-height: 1.5;
 }
@@ -34,7 +35,9 @@ section {
     margin: 0 1em 1em;
     background: white;
     height: 100%;
-    box-shadow: 2px 2px 2px 0 #333;
+    box-shadow: 6px 4px 44px -16px rgba(77,77,77,1);
+    border-radius: 5px;
+    text-align: center;
 }
 
 section h2 {
@@ -56,6 +59,12 @@ form {
     border: 2px solid #e57373;
     margin-right: 0;
     font-family: inherit;
+}
+[type="search"]:focus {
+    outline: none;
+    border: none;
+    border-bottom: 2px solid #e57373;
+    
 }
 
 #submit {

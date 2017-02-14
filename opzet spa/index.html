@@ -21,7 +21,7 @@
             </header>
             <ul>
                 <a href="#start"><li>Start</li></a>
-                <a href="#list"><li>Gif Search</li></a>
+                <a href="#gif"><li>Gif Search</li></a>
             </ul>
         </div>
     </nav>
@@ -33,31 +33,27 @@
 
         </section>
 
-        <section id="list" class="hide">
+        <section id="gif" class="hide">
 
             <h2>Just another GIF search engine</h2>
 
             <form method="post">
-                <input id="search" type="search">
-                <button id="submit"><img src="https://d30y9cdsu7xlg0.cloudfront.net/png/95-200.png"></button>
+                <input id="search" type="search" placeholder="Search GIFs">
+                <button id="submit"><img src="static/img/search.png"></button>
             </form>
 
             <img id="loading" class="hide" src="./static/img/loading.gif">
-            <h2 id="search-result"></h2>
+            <h2 id="search-result">{{result}}</h2>
             <div id="images">
 
             </div>
-
-
-
-
-
-
         </section>
     </div>
 
 </main>
 <script src="static/js/aja/aja.min.js"></script>
+<script src="static/js/routie.js"></script>
+<script src="static/js/handlebars.min-latest.js"></script>
 <script src="static/js/app.js"></script>
 </body>
 
