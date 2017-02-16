@@ -11,7 +11,14 @@
 <body>
 
 <main>
-
+    <div id="overlay" class="hide">
+        <div id="modal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <p style="color: black;">// Hier komt de detailweergave van de geselecteerde GIF.</p>
+            </div>
+        </div>
+    </div>
     <nav>
         <div class="nav-container container">
             <header>
@@ -20,8 +27,8 @@
 
             </header>
             <ul>
-                <a href="#start"><li>Start</li></a>
-                <a href="#gif"><li>Gif Search</li></a>
+                <a href="#start" id="start-link"><li>Start</li></a>
+                <a href="#gif" id="gif-link"><li>Gif Search</li></a>
             </ul>
         </div>
     </nav>
@@ -34,26 +41,25 @@
         </section>
 
         <section id="gif" class="hide">
-
             <h2>Just another GIF search engine</h2>
 
             <form method="post">
-                <input id="search" type="search" placeholder="Search GIFs">
+                <input id="search" type="search" placeholder="Try 'cats'">
                 <button id="submit"><img src="static/img/search.png"></button>
             </form>
 
             <img id="loading" class="hide" src="./static/img/loading.gif">
-            <h2 id="search-result">{{result}}</h2>
+            <h2 id="search-result"></h2>
             <div id="images">
 
             </div>
+
         </section>
     </div>
-
 </main>
 <script src="static/js/aja/aja.min.js"></script>
 <script src="static/js/routie.js"></script>
-<script src="static/js/handlebars.min-latest.js"></script>
+<script src="static/js/transparency.min.js"></script>
 <script src="static/js/app.js"></script>
 </body>
 
