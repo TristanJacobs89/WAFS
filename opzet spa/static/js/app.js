@@ -47,7 +47,7 @@
 
     function getSearchResults() {
 
-        var _urlForAPI = 'http://api.giphy.com/v1/gifs/search?q=' + _searchBox.value + '&api_key=dc6zaTOxFJmzC&limit=25';
+        var _urlForAPI = 'https://api.giphy.com/v1/gifs/search?q=' + _searchBox.value + '&api_key=dc6zaTOxFJmzC&limit=25';
 
         // Show loading icon
         _loading.classList.remove('hide');
