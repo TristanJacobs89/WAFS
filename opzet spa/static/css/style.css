@@ -1,22 +1,15 @@
 /* Global Styles */
 
-
 html {
     font-family: "Avenir Next Condensed", sans-serif;
     font-size: 80%;
     color: white;
     line-height: 1.5;
 }
-
-.hide-overflow {
-    overflow: hidden;
-}
-
 h1 {
     margin: 0;
     font-weight: lighter;
 }
-
 body {
     margin: 0;
     padding: 0;
@@ -24,7 +17,6 @@ body {
     background: url("../img/background.jpg") no-repeat center center fixed;
     background-size: cover;
 }
-
 #overlay {
     position: absolute;
     display: flex;
@@ -37,35 +29,25 @@ body {
     z-index: 10;
 }
 
+/* Modal */
+
 .modal {
-    display: none; 
-    position: fixed; 
+    display: none;
+    position: fixed;
     z-index: 1;
     left: 0;
     top: 0;
-    width: 100%; 
-    height: 100%; 
-    overflow: auto; 
-    background-color: rgb(0,0,0); 
-    background-color: rgba(0,0,0,0.5);
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.9);
 }
-
-/* Modal Content/Box */
-.modal-content {
-    background-color: #fefefe;
-    margin: 15% auto; 
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%; 
-}
-
 .close {
     color: #aaa;
     float: right;
     font-size: 28px;
     font-weight: bold;
 }
-
 .close:hover,
 .close:focus {
     color: black;
@@ -74,15 +56,6 @@ body {
 }
 
 
-.hide {
-    display: none!important;
-}
-
-#loading {
-    width: 5em;
-    margin: 0 auto;
-}
-
 /* Sections */
 
 section {
@@ -90,22 +63,22 @@ section {
     margin: 0 1em 1em;
     background-color: rgba(0, 0, 0, 0.2);
     height: 100%;
-    box-shadow: 6px 4px 44px -16px rgba(77,77,77,1);
+    box-shadow: 6px 4px 44px -16px rgba(77, 77, 77, 1);
     border-radius: 5px;
     text-align: center;
 }
-
 section h2 {
     text-align: center;
 }
+
+/* Form */
 
 form {
     margin: 0 0 3em 0;
     display: flex;
     width: 100%;
-    box-shadow: 6px 4px 44px -16px rgba(77,77,77,1);
+    box-shadow: 6px 4px 44px -16px rgba(77, 77, 77, 1);
 }
-
 [type="search"] {
     -webkit-appearance: none;
     background: none;
@@ -119,7 +92,6 @@ form {
     margin-right: 0;
     font-family: inherit;
     transition: 0.3s;
-
 }
 [type="search"]:focus {
     outline: none;
@@ -130,15 +102,12 @@ form {
 [type="search"]::-webkit-input-placeholder {
     color: white;
 }
-
 #submit {
     -webkit-appearance: none;
     border: none;
     flex: 1;
     background: #e57373;
 }
-
-
 #submit:hover,
 #submit:focus,
 #submit:active,
@@ -146,11 +115,13 @@ nav ul li:hover,
 nav ul li:focus {
     background: #e52a23;
     cursor: pointer;
+    outline: 0;
+}
+#submit img {
+    height: 2em;
 }
 
-#submit img {
-    height: 3em;
-}
+/* Images from API */
 
 #images {
     display: flex;
@@ -159,26 +130,17 @@ nav ul li:focus {
     justify-content: space-between;
     width: 100%;
 }
-
 #images img {
-    margin: 0.7em;
-    height: 10em;
-    max-width: 25%;
+    margin: 1.7em;
+    height: 11em;
 }
-
-.gif {
-    transition: 0.2s;
-}
-.gif:hover {
-    transform: scale(1.2);
+.resultgif {
     cursor: pointer;
     transition: 0.2s;
+    height: 30em;
 }
 
-
-
 /* MOBILE FIRST */
-
 /* Navigation */
 
 nav {
@@ -189,11 +151,9 @@ nav {
     height: 13vh;
     color: white;
 }
-
 nav header {
     margin: 3em 0 0 0;
 }
-
 nav ul {
     list-style: none;
     display: flex;
@@ -203,7 +163,6 @@ nav ul {
     flex-direction: row;
     justify-content: space-around;
 }
-
 nav ul a {
     display: flex;
     margin-left: 1em;
@@ -213,7 +172,6 @@ nav ul a {
     text-transform: uppercase;
     font-size: 80%;
 }
-
 nav ul li {
     display: flex;
     padding: 1.5em;
@@ -221,13 +179,31 @@ nav ul li {
     background: #e57373;
     transition: 0.2s;
 }
+form {
+    flex-direction: column;
+}
+#images {
+    justify-content: center;
+}
+.resultgif {
+    max-height: 20em;
+}
+/* Helpers */
 
-
+.hide-overflow {
+    overflow: hidden;
+}
+.hide {
+    display: none!important;
+}
+#loading {
+    width: 5em;
+    margin: 0 auto;
+}
 
 /* Tablets */
 
 @media only screen and (min-width: 700px) {
-
     .container {
         width: 90vw;
         height: inherit;
@@ -239,7 +215,6 @@ nav ul li {
         justify-content: space-around;
         align-items: center;
     }
-
     nav {
         height: 9vh;
         width: 100%;
@@ -248,20 +223,16 @@ nav ul li {
         justify-content: space-between;
         align-items: center;
     }
-
     nav header {
         margin: 0;
     }
-
     nav ul {
         width: auto;
         justify-content: flex-end;
     }
-
     nav ul li:nth-child(2) {
         margin-left: 0.5em;
     }
-
     section {
         margin: 3em;
         display: flex;
@@ -271,18 +242,14 @@ nav ul li {
 
 /* Desktops */
 
-@media only screen and (min-width: 1300px) {
-
+@media only screen and (min-width: 1000px) {
     body {
         width: 100%;
     }
-
     .container {
         width: 90vw;
     }
-
-    nav ul li:hover {
-        background: #ef5350;
-        transition: 0.3s;
+    form {
+        flex-direction: row;
     }
 }

@@ -54,13 +54,13 @@
                     // set the <img src attribute to the 'embed_url' property of the object it loops over
                     obj.data.map(function(element){
                         _html += "<img src='https://i.giphy.com/" + element.id + ".gif" + "'>";
-                    })
+                    });
 
                     // put the value of '_html' into the selected div
                     document.getElementById('images').innerHTML = _html;
 
                 })
                 .go();
-        };
+        }
 // end of IIFE
 }());

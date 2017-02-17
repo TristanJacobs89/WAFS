@@ -129,8 +129,7 @@
                 }
             }
         }
-    };
-
+    }
     // Bereken het verchil in meters tussen twee punten
     function _calculate_distance(p1, p2) {
         var pos1 = new google.maps.LatLng(p1.coords.latitude, p1.coords.longitude);
@@ -154,7 +153,7 @@
      */
     function generate_map(myOptions, canvasId) {
         // TODO: Kan ik hier asynchroon nog de google maps api aanroepen? dit scheelt calls
-        debug_message("Genereer een Google Maps kaart en toon deze in #" + canvasId)
+        debug_message("Genereer een Google Maps kaart en toon deze in #" + canvasId);
         map = new google.maps.Map(document.getElementById(canvasId), myOptions);
 
         var routeList = [];
@@ -228,9 +227,14 @@
     // FUNCTIES VOOR DEBUGGING
 
     function _geo_error_handler(code, message) {
-        debug_message(""
-            geo.js error "" + code + "": "" + message);
-    }
+        debug_message("";
+        geo.js;
+        error;
+        "" + code + ""
+    :
+        "" + message
+    )
+    };;
 
     function debug_message(message) {
         (customDebugging && debugId) ? document.getElementById(debugId).innerHTML: console.log(message);
