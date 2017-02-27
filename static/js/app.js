@@ -11,26 +11,33 @@
 // - Transparency.js
 
 
-// TO DO LIST:
+// Nice To Haves:
+// ----------------
 
 // Option to select GIFs or stickers
 // Find a better way to display gifs in detail view
 // Fix responsive issues
+
 // =============================================
 
 (function() {
     // Engage strict mode
     "use strict";
 
+    // Var declarations for routing
+    var startElement = document.getElementById('start'),
+        gifsElement = document.getElementById('gifs');
+
     // Routing
     routie({
         'start': function() {
-            document.getElementById('start').classList.remove("hide");
-            document.getElementById('gifs').classList.add("hide");
+            startElement.classList.remove("hide");
+            gifsElement.classList.add("hide");
+
         },
         'gifs': function() {
-            document.getElementById('gifs').classList.remove("hide");
-            document.getElementById('start').classList.add("hide");
+            gifsElement.classList.remove("hide");
+            startElement.classList.add("hide");
         }
     });
 
@@ -40,8 +47,8 @@
             _loading        = document.getElementById('loading');
 
     // search clickhandler, executes main data retrieval function
-    _submit.addEventListener("click", function () {
-        event.preventDefault();
+    _submit.addEventListener("click", function(ev) {
+        ev.preventDefault();
         getSearchResults();
     });
 
