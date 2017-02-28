@@ -1,6 +1,6 @@
 // Door Tristan Jacobs
-
 // With some help of the one and only Dave Bitter
+
 // Object Oriented, bitches!
 // #justlikejava
 
@@ -24,54 +24,70 @@
     // Engage strict mode
     "use strict";
 
-    // Var declarations for routing
-    var startElement = document.getElementById('start'),
-        gifsElement = document.getElementById('gifs');
+    // Object literals
+    var element = {
+        start                   : document.getElementById('start'),
+        gifs                    : document.getElementById('gifs'),
+        body                    : document.querySelector('body'),
+        searchResult            : document.getElementById('search-result'),
+        images                  : document.getElementById('images')
+    };
+
+    var formElements = {
+        searchBox               : document.getElementById('search'),
+        submit                  : document.getElementById('submit'),
+        loading                 : document.getElementById('loading')
+    };
+
+    var modal = {
+        self                    : document.getElementById('modal'),
+        modalContent            : document.getElementById('modal-content'),
+        selectedGifContainer    : document.getElementById('selectedGif')
+    };
 
     // Routing
     routie({
         'start': function() {
-            startElement.classList.remove("hide");
-            gifsElement.classList.add("hide");
+            element.start.classList.remove("hide");
+            element.gifs.classList.add("hide");
 
         },
         'gifs': function() {
-            gifsElement.classList.remove("hide");
-            startElement.classList.add("hide");
+            element.gifs.classList.remove("hide");
+            element.start.classList.add("hide");
         }
     });
 
-    // Var declarations for click events
-    var     _searchBox      = document.getElementById('search'),
-            _submit         = document.getElementById('submit'),
-            _loading        = document.getElementById('loading');
-
     // search clickhandler, executes main data retrieval function
-    _submit.addEventListener("click", function(ev) {
+    formElements.submit.addEventListener("click", function(ev) {
         ev.preventDefault();
         getSearchResults();
     });
 
     function getSearchResults() {
 
-        var _urlForAPI = 'https://api.giphy.com/v1/gifs/search?q=' + _searchBox.value + '&api_key=dc6zaTOxFJmzC&limit=25';
+        var _urlForAPI = 'https://api.giphy.com/v1/gifs/search?q=' + formElements.searchBox.value + '&api_key=dc6zaTOxFJmzC&limit=25';
 
         // Show loading icon
-        _loading.classList.remove('hide');
+        formElements.loading.classList.remove('hide');
 
         aja()
             .url(_urlForAPI)
+
+            // 'x' means any number (404, 400, etc. will match)
+            .on('40x', function(response){
+                element.searchResult.innerHTML = "Uh oh.. something went wrong here..";
+            })
 
             // obj is a javascript object returned from Giphy API
             .on('success', function(obj){
                 var _html = '';
 
                 // remove loading icon
-                _loading.classList.add('hide');
+                formElements.loading.classList.add('hide');
 
                 // display search results header
-                document.getElementById('search-result').innerHTML = 'Search results for ' + '"' + _searchBox.value + '"';
-
+                element.searchResult.innerHTML = 'Search results for ' + '"' + formElements.searchBox.value + '"';
 
                 // map the objects received with AJA and for each object, map the <img src attribute
                 // to the 'embed_url' property of the object it loops over
@@ -80,7 +96,7 @@
                 });
 
                 // put the values of '_html' into the selected div to show them on the page
-                document.getElementById('images').innerHTML = _html;
+                element.images.innerHTML = _html;
 
                 var _gifs = document.querySelectorAll('.resultgif');
 
@@ -88,27 +104,21 @@
                 _gifs.forEach(function(el){
                     el.addEventListener('click', function () {
 
-                        // get the modal
-                        var modal                   = document.getElementById('modal'),
-                            modalContent            = document.getElementById('modal-content'),
-                            selectedGifContainer    = document.getElementById('selectedGif'),
-                            body                    = document.querySelector('body');
-
                         // add gif to modal
-                        selectedGifContainer.appendChild(this);
+                        modal.selectedGifContainer.appendChild(this);
 
                         // when the user clicks on the button, open the modal
-                        modal.style.display             = 'flex';
-                        modal.style.justifyContent      = 'center';
-                        modal.style.alignItems          = 'center';
-                        body.classList.add('hide-overflow');
+                        modal.self.style.display             = 'flex';
+                        modal.self.style.justifyContent      = 'center';
+                        modal.self.style.alignItems          = 'center';
+                        element.body.classList.add('hide-overflow');
 
                         // when the user clicks anywhere outside of the modal, close it
                         window.onclick = function(event) {
-                            if (event.target == modal) {
-                                modal.style.display = 'none';
-                                body.classList.remove('hide-overflow');
-                                selectedGifContainer.removeChild(el);
+                            if (event.target == modal.self) {
+                                modal.self.style.display = 'none';
+                                element.body.classList.remove('hide-overflow');
+                                modal.selectedGifContainer.removeChild(el);
                             }
                         };
                     });
