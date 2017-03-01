@@ -10,11 +10,9 @@
 // - jQuery.js
 // - Transparency.js
 
-
 // Nice To Haves:
 // ----------------
 
-// Option to select GIFs or stickers
 // Find a better way to display gifs in detail view
 // Fix responsive issues
 
@@ -24,29 +22,48 @@
     // Engage strict mode
     "use strict";
 
+    // Because jQuery is life
+    function $(id) {
+        return document.querySelector(id);
+    }
+    function $$(id) {
+        return document.querySelectorAll(id);
+    }
+
     // Object literals
     var element = {
-        start                   : document.getElementById('start'),
-        gifs                    : document.getElementById('gifs'),
-        body                    : document.querySelector('body'),
-        searchResult            : document.getElementById('search-result'),
-        images                  : document.getElementById('images')
+        start                   : $('#start'),
+        gifs                    : $('#gifs'),
+        body                    : $('body'),
+        searchResult            : $('#search-result'),
+        images                  : $('#images');
     };
 
     var formElements = {
-        searchBox               : document.getElementById('search'),
-        submit                  : document.getElementById('submit'),
-        loading                 : document.getElementById('loading')
+        searchform              : $('#searchform'),
+        searchBox               : $('#search'),
+        submit                  : $('#submit'),
+        loading                 : $('#loading'),
+        gifSelector             : $('#gifSelector'),
+        stickerSelector         : $('#stickersSelector'),
+        selectedFilter          : function () {
+            if (this.gifSelector.checked) {
+                return this.gifSelector.value;
+            } else if (this.stickerSelector.checked) {
+                return this.stickerSelector.value;
+            }
+        }
     };
 
     var modal = {
-        self                    : document.getElementById('modal'),
-        modalContent            : document.getElementById('modal-content'),
-        selectedGifContainer    : document.getElementById('selectedGif')
+        self                    : $('#modal'),
+        modalContent            : $('#modal-content'),
+        selectedGifContainer    : $('#selectedGif')
     };
 
     // Routing
-    routie({
+    routie(
+        {
         'start': function() {
             element.start.classList.remove("hide");
             element.gifs.classList.add("hide");
@@ -56,17 +73,18 @@
             element.gifs.classList.remove("hide");
             element.start.classList.add("hide");
         }
-    });
+    }
+    );
 
     // search clickhandler, executes main data retrieval function
-    formElements.submit.addEventListener("click", function(ev) {
+    formElements.searchform.addEventListener("submit", function(ev) {
         ev.preventDefault();
-        getSearchResults();
+        getSearchResults(formElements.selectedFilter());
     });
 
-    function getSearchResults() {
+    function getSearchResults(filter) {
 
-        var _urlForAPI = 'https://api.giphy.com/v1/gifs/search?q=' + formElements.searchBox.value + '&api_key=dc6zaTOxFJmzC&limit=25';
+        var _urlForAPI = 'https://api.giphy.com/v1/' + filter + '/search?q=' + formElements.searchBox.value + '&api_key=dc6zaTOxFJmzC&limit=25';
 
         // Show loading icon
         formElements.loading.classList.remove('hide');
@@ -104,8 +122,9 @@
                 _gifs.forEach(function(el){
                     el.addEventListener('click', function () {
 
-                        // add gif to modal
+                        // add gif to modal and make it a bit bigger
                         modal.selectedGifContainer.appendChild(this);
+                        this.style.transform = 'scale(2)';
 
                         // when the user clicks on the button, open the modal
                         modal.self.style.display             = 'flex';

@@ -11,7 +11,7 @@
 <body>
 <main>
     <div id="modal" class="modal">
-            <span id="selectedGif"></span>
+        <span id="selectedGif"></span>
     </div>
     <nav>
         <div class="nav-container container">
@@ -31,8 +31,18 @@
         </section>
         <section id="gifs" class="hide">
             <h2>Just another GIF search engine</h2>
-            <form method="post">
-                <input id="search" type="search" required placeholder="Try 'cats'">
+            <form method="post" id="searchform">
+                <fieldset role="select-category">
+                    <label name="gifs">
+                        GIFs
+                        <input id="gifSelector" type="radio" name="select-result" value="gifs">
+                    </label>
+                    <label name="stickers">
+                        Stickers
+                        <input id="stickersSelector" type="radio" name="select-result" value="stickers">
+                    </label>
+                </fieldset>
+                <input id="search" results="5" type="search" required placeholder="Try 'cats'">
                 <button type="submit" id="submit"><img src="static/img/search.png"></button>
             </form>
             <img id="loading" class="hide" src="./static/img/loading.gif">
