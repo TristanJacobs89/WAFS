@@ -36,7 +36,16 @@
         gifs                    : $('#gifs'),
         body                    : $('body'),
         searchResult            : $('#search-result'),
-        images                  : $('#images')
+        images                  : $('#images'),
+        detailView              : $('#detail-view'),
+        backButton              : $('#back-btn')
+    }
+
+    var detailPage = {
+        imgName                 : $('.imgName'),
+        imgURL                  : $('.imgUrl'),
+        imgUploader             : $('.imgUploader'),
+        imgUploadDate           : $('.imgUploadDate')
     }
 
     var formElements = {
@@ -55,11 +64,12 @@
         }
     }
 
-    var modal = {
-        self                    : $('#modal'),
-        modalContent            : $('#modal-content'),
-        selectedGifContainer    : $('#selectedGif')
-    };
+    // var modal = {
+    //     self                    : $('#modal'),
+    //     modalContent            : $('#modal-content'),
+    //     selectedGifContainer    : $('#selectedGif'),
+    //     detailViewContainer     : $('#imgDetailView')
+    // };
 
     // Routing
     routie(
@@ -73,8 +83,13 @@
             element.gifs.classList.remove("hide");
             element.start.classList.add("hide");
         }
-    }
+        }
     );
+
+    element.backButton.addEventListener('click', function () {
+        element.detailView.classList.add('hide');
+        element.images.classList.remove('hide');
+    })
 
     // search clickhandler, executes main data retrieval function
     formElements.searchform.addEventListener("submit", function(ev) {
@@ -100,6 +115,7 @@
             // obj is a javascript object returned from Giphy API
             .on('success', function(obj){
                 var _html = '';
+
                 console.log(obj);
 
                 // remove loading icon
@@ -112,6 +128,7 @@
                 // to the 'embed_url' property of the object it loops over
                 obj.data.map(function(element){
                     _html += "<img class='resultgif' src='https://i.giphy.com/" + element.id + ".gif" + "'>";
+
                 });
 
                 // put the values of '_html' into the selected div to show them on the page
@@ -123,24 +140,32 @@
                 _gifs.forEach(function(el){
                     el.addEventListener('click', function () {
 
+                        element.images.classList.add('hide');
+                        element.detailView.classList.remove('hide');
+
+
+                        console.log(obj.data);
+
+
+
                         // add gif to modal and make it a bit bigger
-                        modal.selectedGifContainer.appendChild(this);
-                        this.style.transform = 'scale(2)';
+                        // modal.selectedGifContainer.appendChild(this);
+                        // this.style.transform = 'scale(2)';
 
-                        // when the user clicks on the button, open the modal
-                        modal.self.style.display             = 'flex';
-                        modal.self.style.justifyContent      = 'center';
-                        modal.self.style.alignItems          = 'center';
-                        element.body.classList.add('hide-overflow');
-
-                        // when the user clicks anywhere outside of the modal, close it
-                        window.onclick = function(event) {
-                            if (event.target == modal.self) {
-                                modal.self.style.display = 'none';
-                                element.body.classList.remove('hide-overflow');
-                                modal.selectedGifContainer.removeChild(el);
-                            }
-                        };
+                        // // when the user clicks on the button, open the modal
+                        // modal.self.style.display             = 'flex';
+                        // modal.self.style.justifyContent      = 'center';
+                        // modal.self.style.alignItems          = 'center';
+                        // element.body.classList.add('hide-overflow');
+                        //
+                        // // when the user clicks anywhere outside of the modal, close it
+                        // window.onclick = function(event) {
+                        //     if (event.target == modal.self) {
+                        //         modal.self.style.display = 'none';
+                        //         element.body.classList.remove('hide-overflow');
+                        //         modal.selectedGifContainer.removeChild(el);
+                        //     }
+                        // };
                     });
                 });
             })
