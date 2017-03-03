@@ -1,7 +1,26 @@
 # Web App From Scratch - Minor Webdevelopment
 Repo for Web App From Scratch course @ HvA Minor Web Development
 
-# Opdracht 1: Voor/nadelen Javascript Libraries 
+
+# Over deze repo
+Deze repo bevat de SPA voor het vak Web App From Scratch van de HvA Minor Web Development.
+In deze repo vind je onder anderen de code van de opdrachten, research naar libraries/frameworks en bronnen.
+
+## De App
+De gebruiker kan met de webapplicatie zoeken naar stickers of GIFS. Deze afbeeldingen worden dan live opgehaald uit de Giphy API.
+
+## Gebruik
+Gebruik de zoekbalk om te zoeken naar een onderwerp. Selecteer of je GIFs of stickers te zien wilt krijgen en klik op het vergrootglas.
+
+## Wishlist
+- Nieuw design
+- Switchen naar andere API, namelijk PopKey, voor meer mogelijkheden <https://api.popkey.co/>
+- Trending view/populaire zoektermen
+- Meer details per GIFs
+
+==========================================================
+
+## Opdracht 1: Voor/nadelen Javascript Libraries 
 
 ## Nadelen:
 - Lastiger debuggen omdat je niet exact weet wat er precies mis gaat binnen het framework/library
