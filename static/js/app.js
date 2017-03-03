@@ -36,8 +36,8 @@
         gifs                    : $('#gifs'),
         body                    : $('body'),
         searchResult            : $('#search-result'),
-        images                  : $('#images');
-    };
+        images                  : $('#images')
+    }
 
     var formElements = {
         searchform              : $('#searchform'),
@@ -53,7 +53,7 @@
                 return this.stickerSelector.value;
             }
         }
-    };
+    }
 
     var modal = {
         self                    : $('#modal'),
@@ -100,6 +100,7 @@
             // obj is a javascript object returned from Giphy API
             .on('success', function(obj){
                 var _html = '';
+                console.log(obj);
 
                 // remove loading icon
                 formElements.loading.classList.add('hide');
