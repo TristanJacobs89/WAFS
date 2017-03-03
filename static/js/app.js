@@ -10,11 +10,13 @@
 // - jQuery.js
 // - Transparency.js
 
-// Nice To Haves:
-// ----------------
+// TO DO:
 
-// Find a better way to display gifs in detail view
-// Fix responsive issues
+// Refactoring:
+// Alles in objecten met methods in plaats van floating functions.
+// Gebruik de patterns van het vak, zie Slack.
+// Nu te veel eigen structuur (is niet erg, maar nog niet volgbaar via de diagrammen)
+// Diagramm moet meer USER FLOW tonen; welke gebruikers interacties triggeren welke functionaliteiten?
 
 // =============================================
 
@@ -23,6 +25,7 @@
     "use strict";
 
     // Because jQuery is life
+    // Deze kunnen in een utils object
     function $(id) {
         return document.querySelector(id);
     }
@@ -143,29 +146,7 @@
                         element.images.classList.add('hide');
                         element.detailView.classList.remove('hide');
 
-
                         console.log(obj.data);
-
-
-
-                        // add gif to modal and make it a bit bigger
-                        // modal.selectedGifContainer.appendChild(this);
-                        // this.style.transform = 'scale(2)';
-
-                        // // when the user clicks on the button, open the modal
-                        // modal.self.style.display             = 'flex';
-                        // modal.self.style.justifyContent      = 'center';
-                        // modal.self.style.alignItems          = 'center';
-                        // element.body.classList.add('hide-overflow');
-                        //
-                        // // when the user clicks anywhere outside of the modal, close it
-                        // window.onclick = function(event) {
-                        //     if (event.target == modal.self) {
-                        //         modal.self.style.display = 'none';
-                        //         element.body.classList.remove('hide-overflow');
-                        //         modal.selectedGifContainer.removeChild(el);
-                        //     }
-                        // };
                     });
                 });
             })
