@@ -181,8 +181,22 @@ nav ul li {
     transition: 0.2s;
 }
 form {
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
 }
+
+[name="gifs"],
+[name="stickers"] {
+    flex-basis: 50%;
+}
+
+input[type="radio"] {
+    margin: 0 2em;
+}
+#search {
+    flex-basis: 100%;
+}
+
 #images {
     justify-content: center;
 }
