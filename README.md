@@ -6,6 +6,9 @@ Repo for Web App From Scratch course @ HvA Minor Web Development
 Deze repo bevat de SPA voor het vak Web App From Scratch van de HvA Minor Web Development.
 In deze repo vind je onder anderen de code van de opdrachten, research naar libraries/frameworks en bronnen.
 
+## Link naar App
+<https://iamt.nl/minor/wafs>
+
 ## De App
 De gebruiker kan met de webapplicatie zoeken naar stickers of GIFS. Deze afbeeldingen worden dan live opgehaald uit de Giphy API.
 
@@ -84,6 +87,3 @@ Gebruik de zoekbalk om te zoeken naar een onderwerp. Selecteer of je GIFs of sti
 - https://www.linkedin.com/pulse/why-single-page-application-pros-cons-ravi-hamsa
 - https://neoteric.eu/single-page-application-vs-multiple-page-application
 
-
-# Opdracht 5 - Opzet SPA
-https://iamt.nl/minor/wafs
