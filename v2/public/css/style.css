@@ -1,0 +1,90 @@
+/*
+    WAFS Version 2
+    By Tristan Jacobs, 2017
+*/
+
+
+/* VARIABLES
+============================================= */
+
+:root {
+  --main-bg-color: #34495E;
+  --main-font: 20px 'Roboto', sans-serif
+}
+
+/* GLOBAL ELEMENTS
+============================================= */
+
+body {
+  padding: 1em;
+  margin: 0;
+  background-color: var(--main-bg-color);
+  font: var(--main-font);
+}
+
+h1, h2, h3 {
+  color: white;
+}
+
+.intro {
+  text-align: center;
+  color: white;
+}
+
+/* SEARCH FORM
+============================================= */
+
+#search-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#search-form input {
+  margin-bottom: 1em;
+  transition: 0.2s;
+  font: var(--main-font);
+}
+
+#search-form input[type="text"] {
+  padding: 0.5em;
+  background: none;
+  border: none;
+  border-bottom: 2px solid lightgrey;
+  color: white;
+  text-align: center;
+  font-size: 200%;
+}
+
+#search-form input[type="text"]:active,
+#search-form input[type="text"]:focus {
+  transition: 0.2s;
+  outline: none;
+  border-color: white;
+}
+
+#search-form input[type="submit"] {
+  padding: 1em 2em;
+  background-color: #03C9A9;
+  color: white;
+  text-transform: uppercase;
+  font-size: 70%;
+  border: none;
+  border-radius: 5px;
+}
+
+#search-form input[type="submit"]:active,
+#search-form input[type="submit"]:focus,
+#search-form input[type="submit"]:hover
+{
+  cursor: pointer;
+  background-color: #16A085;
+  transition: 0.2s;
+  outline: none;
+  border: none;
+  border-radius: 25px;
+}
+
+/*
+============================================= */
