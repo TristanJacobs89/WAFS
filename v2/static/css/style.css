@@ -20,19 +20,21 @@ body {
   margin: 0;
   background-color: var(--main-bg-color);
   font: var(--main-font);
-}
-
-h1, h2, h3 {
   color: white;
 }
 
-.intro {
+header, h2, h3 {
   text-align: center;
-  color: white;
 }
+
+
 
 /* SEARCH FORM
 ============================================= */
+
+.search {
+  margin-top: 20vh;
+}
 
 #search-form {
   display: flex;
@@ -47,18 +49,18 @@ h1, h2, h3 {
   font: var(--main-font);
 }
 
-#search-form input[type="text"] {
+#search-form input[type="search"] {
   padding: 0.5em;
   background: none;
   border: none;
   border-bottom: 2px solid lightgrey;
-  color: white;
   text-align: center;
   font-size: 200%;
+  color: white;
 }
 
-#search-form input[type="text"]:active,
-#search-form input[type="text"]:focus {
+#search-form input[type="search"]:active,
+#search-form input[type="search"]:focus {
   transition: 0.2s;
   outline: none;
   border-color: white;
@@ -86,5 +88,13 @@ h1, h2, h3 {
   border-radius: 25px;
 }
 
-/*
+.selectors label:hover {
+  cursor: pointer;
+}
+
+/* HELPERS
 ============================================= */
+
+.hidden {
+  display: none;
+}

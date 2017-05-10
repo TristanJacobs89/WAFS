@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Web App From Scratch</title>
+    <link rel="stylesheet" href="static/css/style.css">
+</head>
+
+<body>
+    <main>
+        <section class="search">
+            <h2>Just another GIF search engine</h2>
+            <form id="search-form">
+              <div class="selectors">
+                  <label name="gifs">
+                          GIFs
+                          <input id="gifSelector" type="radio" name="select-result" value="gifs">
+                  </label>
+                  <label name="stickers">
+                          Stickers
+                          <input id="stickersSelector" type="radio" name="select-result" value="stickers">
+                  </label>
+                </div>
+
+                <input id="search" results="5" type="search" required>
+                <input type="submit" id="submit" value="Find it!">
+            </form>
+            <img id="loading" class="hidden" src="./static/img/loading.gif">
+            <h2 id="search-result"></h2>
+            <div id="images"></div>
+        </section>
+    </main>
+    </main>
+    <script src="static/js/transparency.min.js"></script>
+    <script src="static/js/aja/aja.min.js"></script>
+    <script src="static/js/routie.js"></script>
+    <script src="static/js/app.js"></script>
+</body>
+
+</html>
