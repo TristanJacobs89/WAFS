@@ -6,37 +6,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Web App From Scratch</title>
+    <link rel="stylesheet" href="static/css/animate.css">
     <link rel="stylesheet" href="static/css/style.css">
 </head>
 
 <body>
     <main>
-        <section class="search">
+        <section class="search" id="start">
             <h2>Just another GIF search engine</h2>
             <form id="search-form">
-              <div class="selectors">
-                  <label name="gifs">
+                <div class="selectors">
+                    <label name="gifs">
                           GIFs
-                          <input id="gifSelector" type="radio" name="select-result" value="gifs">
+                          <input id="gif-selector" checked type="radio" name="select-result" value="gifs">
                   </label>
-                  <label name="stickers">
+                    <label name="stickers">
                           Stickers
-                          <input id="stickersSelector" type="radio" name="select-result" value="stickers">
+                          <input id="sticker-selector" type="radio" name="select-result" value="stickers">
                   </label>
                 </div>
-
-                <input id="search" results="5" type="search" required>
+                <input id="search-input" results="5" type="search" required>
                 <input type="submit" id="submit" value="Find it!">
+                <svg id="spinner" class="hidden" xmlns="http://www.w3.org/2000/svg" width="114px" height="114px" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" class="uil-ring-alt">
+                  <rect x="0" y="0" width="50" height="50" fill="none" class="bk"/>
+                  <circle cx="50" cy="50" r="40" stroke="#03C9A9" fill="none" stroke-width="6" stroke-linecap="round">
+                    <animate attributeName="stroke-dashoffset" dur="2s" repeatCount="indefinite" from="0" to="502"/>
+                    <animate attributeName="stroke-dasharray" dur="2s" repeatCount="indefinite" values="150.6 100.4;1 250;150.6 100.4"/>
+                  </circle>
+                </svg>
             </form>
-            <img id="loading" class="hidden" src="./static/img/loading.gif">
-            <h2 id="search-result"></h2>
-            <div id="images"></div>
+            <div id="results"></div>
         </section>
     </main>
     </main>
-    <script src="static/js/transparency.min.js"></script>
-    <script src="static/js/aja/aja.min.js"></script>
     <script src="static/js/routie.js"></script>
+    <script src="static/js/apiconfig.js"></script>
     <script src="static/js/app.js"></script>
 </body>
 
