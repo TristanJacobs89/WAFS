@@ -27,8 +27,6 @@ header, h2, h3 {
   text-align: center;
 }
 
-
-
 /* SEARCH FORM
 ============================================= */
 
@@ -55,7 +53,7 @@ header, h2, h3 {
   border: none;
   border-bottom: 2px solid lightgrey;
   text-align: center;
-  font-size: 200%;
+  font-size: 135%;
   color: white;
 }
 
@@ -91,6 +89,7 @@ header, h2, h3 {
 .selectors label:hover {
   cursor: pointer;
 }
+
 
 /* HELPERS
 ============================================= */
