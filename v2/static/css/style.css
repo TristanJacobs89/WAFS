@@ -92,6 +92,18 @@ header, h2, h3 {
   cursor: pointer;
 }
 
+#results {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#error {
+  margin: 0 auto;
+}
+
 .details-container {
   margin-top: 20vh;
   display: flex;
@@ -99,6 +111,7 @@ header, h2, h3 {
   justify-content: center;
   align-items: center;
 }
+
 #back-brn {
   margin-top: 1em;
 }

@@ -11,8 +11,8 @@
 
 // TO DO:
 
-// - Alles in objecten met methods in plaats van floating functions.
-// - Gebruik de patterns van het vak, zie Slack.
+// X Alles in objecten met methods in plaats van floating functions.
+// X Gebruik de patterns van het vak, zie Slack.
 // - Diagram moet meer USER FLOW tonen; welke gebruikers interacties triggeren welke functionaliteiten?
 // - User Feedback: Wat gebeurt er als de data niet geladen kan worden? Ofs als de zoekterm niet herkend wordt?
 // - Deployen
@@ -43,7 +43,8 @@
             $details:           utils.$("#details"),
             $img_container:     utils.$('#img-container'),
             $start:             utils.$('#start'),
-            $result_area:       utils.$('#results')
+            $result_area:       utils.$('#results'),
+            $error:             utils.$('#error')
         },
 
         form: {
@@ -94,12 +95,11 @@
 
         /* Initializer
         ===================== */
-        
+
         init: function() {
             routes.init();
 
             elements.form.$self.addEventListener('submit', function(e) {
-                console.log('Clicked');
                 // Prevent page from reloading on submit
                 e.preventDefault();
 
@@ -117,6 +117,9 @@
         ===================== */
 
         doApiCall: function(url) {
+
+            // Empty the result area
+            elements.sections.$result_area.innerHTML = '';
             // Toggle the loading spinner
             elements.toggleSpinner();
 
@@ -126,12 +129,34 @@
                 request.open('GET', url, true);
                 request.onload = function() {
                     if (request.status >= 200 && request.status < 400) {
-                        var data = JSON.parse(request.responseText);
+                        var response = JSON.parse(request.responseText).data.reduce(
+                          function(accumulator, currentValue) {
+                            accumulator.push({
+                              id: currentValue.id,
+                              image: currentValue.images.fixed_height
+                            });
+                            
+                            return accumulator;
+                          }, []);
 
-                        // Turn off the loading spinner
-                        elements.toggleSpinner();
+                        console.log(response);
 
-                        app.renderData(data);
+                        if (response.length == 0) {
+
+                          console.log('No data..');
+                          elements.toggleSpinner();
+
+                          // Show error message on page if there is no data
+                          elements.sections.$error.classList.remove('hidden');
+
+                        } else {
+                          elements.sections.$error.classList.add('hidden');
+                          console.log('Data found!');
+                          // Turn off the loading spinner
+                          elements.toggleSpinner();
+                          app.renderData(response);
+
+                        }
                     } else {
                         console.log("Error!");
                     }
@@ -174,10 +199,10 @@
         ===================== */
 
         renderData: function(results) {
-            results.data.map(function(item) {
-                var img_link = item.images.fixed_height.mp4;
+            results.map(function(item) {
+                var img_link = item.image.mp4;
                 var item_id = item.id;
-                console.log(item_id);
+                window.scroll(0, 300);
                 elements.sections.$result_area.innerHTML += '<a href="#details/' + item_id + '">' + '<video autoplay="autoplay" loop="loop">' + '<source src="' + img_link + '" type="video/mp4" />' + '</video></a>';
             });
         },
@@ -208,7 +233,7 @@
         ===================== */
 
         renderDetails: function(object) {
-            console.log(object);
+
             var bigImg = object.data.images.downsized_medium.url;
             var detailsPage = elements.sections.$img_container;
             detailsPage.innerHTML = '<img src="' + bigImg + '">'
