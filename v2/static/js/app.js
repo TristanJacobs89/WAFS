@@ -16,7 +16,7 @@
 // - Diagram moet meer USER FLOW tonen; welke gebruikers interacties triggeren welke functionaliteiten?
 // - User Feedback: Wat gebeurt er als de data niet geladen kan worden? Ofs als de zoekterm niet herkend wordt?
 // - Deployen
-// - Filter functionaliteit inbouwen (.filter(), .map(), .reduce() .sort() moeten er in ieder geval inzitten, of het nut heeft of niet)
+// X Filter functionaliteit inbouwen (.filter(), .map(), .reduce() .sort() moeten er in ieder geval inzitten, of het nut heeft of niet)
 //
 // =============================================
 
@@ -42,6 +42,8 @@
         sections: {
             $details:           utils.$("#details"),
             $img_container:     utils.$('#img-container'),
+            $img_source:        utils.$('#img-source'),
+            $img_post_date:     utils.$('#img-posted-on'),
             $start:             utils.$('#start'),
             $result_area:       utils.$('#results'),
             $error:             utils.$('#error')
@@ -104,11 +106,11 @@
                 e.preventDefault();
 
                 // Get the url parameters
-                var query_type = app.getQueryType(),
-                    query = app.getSearchQuery(),
-                    urlForApi = api_config.URL + query_type + "/search?q=" + query + "&api_key=" + api_config.KEY;
+                var query_type  = app.getQueryType(),
+                    query       = app.getSearchQuery(),
+                    urlForApi   = api_config.URL + query_type + "/search?q=" + query + "&api_key=" + api_config.KEY;
 
-                // Get date from the API
+                // Get data from the API
                 app.doApiCall(urlForApi);
             });
         },
@@ -128,19 +130,28 @@
                 var request = new XMLHttpRequest();
                 request.open('GET', url, true);
                 request.onload = function() {
+
                     if (request.status >= 200 && request.status < 400) {
+
+                        // Use reduce to filter out only the needed information from the returned data
                         var response = JSON.parse(request.responseText).data.reduce(
                           function(accumulator, currentValue) {
                             accumulator.push({
                               id: currentValue.id,
-                              image: currentValue.images.fixed_height
+                              image: currentValue.images.preview_webp
                             });
-                            
-                            return accumulator;
-                          }, []);
 
+                            return accumulator;
+
+                          // Sort the data by their ID's
+                        }, []).sort(function(a, b) {
+                          return a.id - b.id;
+                        });
+
+                        // Log the reduced and sorted data
                         console.log(response);
 
+                        // Check if the response object has data
                         if (response.length == 0) {
 
                           console.log('No data..');
@@ -150,12 +161,13 @@
                           elements.sections.$error.classList.remove('hidden');
 
                         } else {
+
                           elements.sections.$error.classList.add('hidden');
                           console.log('Data found!');
-                          // Turn off the loading spinner
                           elements.toggleSpinner();
-                          app.renderData(response);
 
+                          // Call the render data function to show images
+                          app.renderData(response);
                         }
                     } else {
                         console.log("Error!");
@@ -200,10 +212,15 @@
 
         renderData: function(results) {
             results.map(function(item) {
-                var img_link = item.image.mp4;
-                var item_id = item.id;
+
+                var img_link  = item.image.url;
+                var item_id   = item.id;
+
                 window.scroll(0, 300);
-                elements.sections.$result_area.innerHTML += '<a href="#details/' + item_id + '">' + '<video autoplay="autoplay" loop="loop">' + '<source src="' + img_link + '" type="video/mp4" />' + '</video></a>';
+                elements.sections.$result_area.innerHTML +=
+                '<a class="animated fadeIn" href="#details/' + item_id + '">' +
+                    '<img src="' + img_link + '"/>' +
+                '</a>';
             });
         },
 
@@ -212,31 +229,35 @@
 
         getDetails: function() {
             var hashRoute = location.hash;
-            var id = hashRoute.slice(9);
-            var url = api_config.URL + "gifs/" + id + "?api_key=" + api_config.KEY;
+            var id        = hashRoute.slice(9);
+            var url       = api_config.URL + "gifs/" + id + "?api_key=" + api_config.KEY;
 
             var request = new XMLHttpRequest();
             request.open('GET', url, true);
             request.onload = function() {
                 if (request.status >= 200 && request.status < 400) {
                     var data = JSON.parse(request.responseText);
+                    console.log(data);
                     app.renderDetails(data);
                 } else {
                     console.log("Error!");
                 }
             };
             request.send();
-
         },
 
         /* Render details of selected image in details section
         ===================== */
 
         renderDetails: function(object) {
+            var bigImg                = object.data.images.downsized_large.url;
+            var postDate              = object.data.import_datetime;
+            var source                = object.data.source_post_url;
 
-            var bigImg = object.data.images.downsized_medium.url;
-            var detailsPage = elements.sections.$img_container;
-            detailsPage.innerHTML = '<img src="' + bigImg + '">'
+            elements.sections.$img_container.innerHTML  = '<img class="detail-img" src="' + bigImg + '">';
+            elements.sections.$img_source.innerHTML     = '<a href="'+ source + '" target="_blank">' + source + '</a>';
+            elements.sections.$img_post_date.innerHTML  = postDate;
+
         }
     };
     app.init();
