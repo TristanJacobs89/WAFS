@@ -23,6 +23,9 @@
 (function() {
     "use strict";
 
+/* UTILITIES
+========================================================================= */
+
     var utils = {
         $: function(id) {
             return document.querySelector(id);
@@ -31,6 +34,9 @@
             return document.querySelectorAll(id);
         }
     };
+
+/* DOM ELEMENTS
+========================================================================= */
 
     var elements = {
         sections: {
@@ -55,17 +61,24 @@
         }
     };
 
+/* ROUTES
+========================================================================= */
+
     var routes = {
         init: function() {
             routie({
+
+                // Set default route to #start
                 '': function() {
                     location.hash = '#start';
                 },
+                // Start route
                 'start': function() {
                     elements.sections.$start.classList.remove("hidden");
                     elements.sections.$details.classList.add("hidden");
 
                 },
+                // Details route
                 'details/:id': function() {
                     elements.sections.$start.classList.add("hidden");
                     elements.sections.$details.classList.remove("hidden");
@@ -75,7 +88,13 @@
         }
     };
 
+/* MAIN APP
+========================================================================= */
     var app = {
+
+        /* Initializer
+        ===================== */
+        
         init: function() {
             routes.init();
 
@@ -94,8 +113,13 @@
             });
         },
 
+        /* Call to API
+        ===================== */
+
         doApiCall: function(url) {
+            // Toggle the loading spinner
             elements.toggleSpinner();
+
             // Set a 1 second delay on the API call for perceived performance
             setTimeout(function() {
                 var request = new XMLHttpRequest();
@@ -103,7 +127,10 @@
                 request.onload = function() {
                     if (request.status >= 200 && request.status < 400) {
                         var data = JSON.parse(request.responseText);
+
+                        // Turn off the loading spinner
                         elements.toggleSpinner();
+
                         app.renderData(data);
                     } else {
                         console.log("Error!");
@@ -116,7 +143,9 @@
             }, 1000)
         },
 
-        // Method for getting the query type (stickers or gifs)
+        /* Get the query type (stickers or gifs)
+        ===================== */
+
         getQueryType: function() {
 
             // Set the query type to "gifs" if gifs checkbox is selected
@@ -133,13 +162,17 @@
             }
         },
 
-        // Method for getting the user's query
+        /* Get the search query
+        ===================== */
+
         getSearchQuery: function() {
             var query = elements.form.$search_input.value;
             return query;
         },
 
-        // Renders images into HTML
+        /* Render data on page
+        ===================== */
+
         renderData: function(results) {
             results.data.map(function(item) {
                 var img_link = item.images.fixed_height.mp4;
@@ -148,6 +181,9 @@
                 elements.sections.$result_area.innerHTML += '<a href="#details/' + item_id + '">' + '<video autoplay="autoplay" loop="loop">' + '<source src="' + img_link + '" type="video/mp4" />' + '</video></a>';
             });
         },
+
+        /* Get details of selected image
+        ===================== */
 
         getDetails: function() {
             var hashRoute = location.hash;
@@ -167,6 +203,9 @@
             request.send();
 
         },
+
+        /* Render details of selected image in details section
+        ===================== */
 
         renderDetails: function(object) {
             console.log(object);
