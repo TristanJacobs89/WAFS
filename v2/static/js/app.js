@@ -22,7 +22,7 @@
 
     var utils = {
         $: function(id) {
-            return document.querySelector(id);
+            return document.getElementById(id);
         }
     };
 
@@ -31,26 +31,26 @@
 
     var elements = {
         sections: {
-            $details:           utils.$("#details"),
-            $img_container:     utils.$('#img-container'),
-            $img_source:        utils.$('#img-source'),
-            $img_post_date:     utils.$('#img-posted-on'),
-            $start:             utils.$('#start'),
-            $result_area:       utils.$('#results')
+            $details:           utils.$("details"),
+            $img_container:     utils.$('img-container'),
+            $img_source:        utils.$('img-source'),
+            $img_post_date:     utils.$('img-posted-on'),
+            $start:             utils.$('start'),
+            $result_area:       utils.$('results')
         },
 
         errors: {
-            $nothingFound:      utils.$('#error_nothing_found'),
-            $noData:            utils.$('#error_no_data')
+            $nothingFound:      utils.$('error_nothing_found'),
+            $noData:            utils.$('error_no_data')
         },
 
         form: {
-            $self:              utils.$('#search-form'),
-            $search_input:      utils.$('#search-input'),
-            $gif_selector:      utils.$('#gif-selector'),
-            $sticker_selector:  utils.$('#sticker-selector'),
-            $submit_button:     utils.$('#submit'),
-            $spinner:           utils.$('#spinner')
+            $self:              utils.$('search-form'),
+            $search_input:      utils.$('search-input'),
+            $gif_selector:      utils.$('gif-selector'),
+            $sticker_selector:  utils.$('sticker-selector'),
+            $submit_button:     utils.$('submit'),
+            $spinner:           utils.$('spinner')
         },
 
         toggleSpinner: function () {
@@ -82,6 +82,7 @@
                 // Start route
                 'start': function() {
                     elements.showStartPage();
+
                 },
                 // Details route
                 'details/:id': function() {
@@ -154,7 +155,7 @@
                               bigImg:   currentValue.images.downsized_large.url,
                               postDate: currentValue.import_datetime,
                               source:   currentValue.source_post_url
-                            }
+                            };
 
                             return accumulator;
 
@@ -255,5 +256,6 @@
             elements.sections.$img_post_date.innerHTML  = postDate;
 
         }
-    }
+    };
+    app.init();
 })();
