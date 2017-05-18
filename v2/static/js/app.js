@@ -89,7 +89,7 @@
                 'details/:id': function() {
                     elements.sections.$start.classList.add("hidden");
                     elements.sections.$details.classList.remove("hidden");
-                    app.getDetails();
+                    app.getDetailsAndRender();
                 }
             });
         }
@@ -119,11 +119,16 @@
             });
         },
 
+        /* Data retrieved by api cal
+        ===================== */
+
+        data: {},
+
         /* Call to API
         ===================== */
 
         doApiCall: function(url) {
-
+      
             // Empty the result area
             elements.sections.$result_area.innerHTML = '';
             // Toggle the loading spinner
@@ -133,17 +138,27 @@
             setTimeout(function() {
                 var request = new XMLHttpRequest();
                 request.open('GET', url, true);
+
+                // empty the data object
+                app.data = {};
+
+
                 request.onload = function() {
-
                     if (request.status >= 200 && request.status < 400) {
-
                         // Use reduce to filter out only the needed information from the returned data
                         var response = JSON.parse(request.responseText).data.reduce(
                           function(accumulator, currentValue) {
                             accumulator.push({
                               id: currentValue.id,
-                              image: currentValue.images.preview_webp
+                              image: currentValue.images.preview_webp,
                             });
+
+                            // populate app.data with values for the gif-info page
+                            app.data[currentValue.id] = {
+                              bigImg: currentValue.images.downsized_large.url,
+                              postDate: currentValue.import_datetime,
+                              source: currentValue.source_post_url
+                            }
 
                             return accumulator;
 
@@ -151,9 +166,6 @@
                         }, []).sort(function(a, b) {
                           return a.id - b.id;
                         });
-
-                        // Log the reduced and sorted data
-                        console.log(response);
 
                         // Check if the response object has data
                         if (response.length == 0) {
@@ -174,7 +186,7 @@
                           app.renderData(response);
                         }
                     } else {
-                        console.log("Error: " + request.statusText);
+                        console.log("Error!");
                     }
                 };
                 request.onerror = function(err) {
@@ -188,7 +200,9 @@
         ===================== */
 
         getQueryType: function() {
-            var queryType;
+
+          var queryType;
+
             // Set the query type to "gifs" if gifs checkbox is selected
             if (elements.form.$gif_selector.checked) {
                 queryType = "gifs";
@@ -200,9 +214,6 @@
                 queryType = "stickers";
                 console.log('User selected STICKERS');
                 return queryType;
-
-            } else {
-              console.log('Error! No query type selected. Please select GIFS or STICKERS.');
             }
         },
 
@@ -234,32 +245,15 @@
         /* Get details of selected image
         ===================== */
 
-        getDetails: function() {
+        getDetailsAndRender: function() {
             var hashRoute = location.hash;
             var id        = hashRoute.slice(9);
-            var url       = api_config.URL + "gifs/" + id + "?api_key=" + api_config.KEY;
+            var gifObj    = app.data[id];
 
-            var request = new XMLHttpRequest();
-            request.open('GET', url, true);
-            request.onload = function() {
-                if (request.status >= 200 && request.status < 400) {
-                    var data = JSON.parse(request.responseText);
-                    console.log(data);
-                    app.renderDetails(data);
-                } else {
-                    console.log("Error!");
-                }
-            };
-            request.send();
-        },
-
-        /* Render details of selected image in details section
-        ===================== */
-
-        renderDetails: function(object) {
-            var bigImg                = object.data.images.downsized_large.url;
-            var postDate              = object.data.import_datetime;
-            var source                = object.data.source_post_url;
+            // get data for the gif-element from app.data object
+            var bigImg    = gifObj.bigImg;
+            var postDate  = gifObj.postDate;
+            var source    = gifObj.source;
 
             elements.sections.$img_container.innerHTML  = '<img class="detail-img" src="' + bigImg + '">';
             elements.sections.$img_source.innerHTML     = '<a href="'+ source + '" target="_blank">' + source + '</a>';
