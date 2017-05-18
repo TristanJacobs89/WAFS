@@ -29,9 +29,6 @@
     var utils = {
         $: function(id) {
             return document.querySelector(id);
-        },
-        $$: function(el) {
-            return document.querySelectorAll(id);
         }
     };
 
