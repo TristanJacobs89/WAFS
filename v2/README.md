@@ -12,6 +12,14 @@ De gebruiker kan met de webapplicatie zoeken naar stickers of GIFS. Deze afbeeld
 ## Gebruik
 Gebruik de zoekbalk om te zoeken naar een onderwerp. Selecteer of je GIFs of stickers te zien wilt krijgen en klik op het de zoek knop. Klik daarna op een GIF of sticker om wat meer details te zien.
 
+## Object Chart
+Deze chart toont de objecten, properties en methods die in de app gebruikt worden.
+![Object Chart](https://github.com/SadisticSun/WAFS/blob/develop/v2/object-diagram.png)
+
+## User Flow
+Dit diagram toont de flow waarde app doorheen gaat bij gebruik.
+![User Flow Diagram](https://github.com/SadisticSun/WAFS/blob/develop/v2/user-flow.png)
+
 ## Wishlist
 - Verbeterd design/UX
 - Switchen naar andere API, namelijk PopKey, voor meer mogelijkheden <https://api.popkey.co/>
