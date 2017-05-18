@@ -193,6 +193,8 @@
                 var queryType = "stickers";
                 console.log('User selected STICKERS');
                 return queryType;
+            } else {
+              console.log('Error! No query type selected. Please select GIFS or STICKERS.');
             }
         },
 
