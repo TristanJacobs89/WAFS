@@ -1,3 +1,6 @@
+*.sketch
+
+.DS_Store
 
 *.xml
 
