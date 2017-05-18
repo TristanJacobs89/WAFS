@@ -3,15 +3,15 @@
 // TO DO:
 
 // - Diagram moet meer USER FLOW tonen; welke gebruikers interacties triggeren welke functionaliteiten?
-// - User Feedback: Wat gebeurt er als de data niet geladen kan worden? Ofs als de zoekterm niet herkend wordt?
 // - Deployen
 // =============================================
 
 (function() {
     "use strict";
 
-  /* API CONFIG
-  ======================================================================= */
+/* API CONFIG
+======================================================================= */
+
     var api_config = {
       KEY: "dc6zaTOxFJmzC",
       URL: "http://api.giphy.com/v1/"
@@ -53,9 +53,18 @@
             $spinner:           utils.$('#spinner')
         },
 
-        toggleSpinner: function() {
+        toggleSpinner: function () {
             elements.form.$spinner.classList.toggle('hidden');
-            elements.form.$submit_button.classList.toggle('hidden');
+        },
+
+        showStartPage: function () {
+            elements.sections.$start.classList.remove("hidden");
+            elements.sections.$details.classList.add("hidden");
+        },
+
+        showDetailsPage: function () {
+            elements.sections.$start.classList.add("hidden");
+            elements.sections.$details.classList.remove("hidden");
         }
     };
 
@@ -72,14 +81,11 @@
                 },
                 // Start route
                 'start': function() {
-                    elements.sections.$start.classList.remove("hidden");
-                    elements.sections.$details.classList.add("hidden");
-
+                    elements.showStartPage();
                 },
                 // Details route
                 'details/:id': function() {
-                    elements.sections.$start.classList.add("hidden");
-                    elements.sections.$details.classList.remove("hidden");
+                    elements.showDetailsPage();
                     app.getDetailsAndRender();
                 }
             });
@@ -110,7 +116,7 @@
             });
         },
 
-        /* Data retrieved by api cal
+        /* Data retrieved by api call
         ===================== */
 
         data: {},
@@ -133,7 +139,6 @@
                 // empty the data object
                 app.data = {};
 
-
                 request.onload = function() {
                     if (request.status >= 200 && request.status < 400) {
                         // Use reduce to filter out only the needed information from the returned data
@@ -144,7 +149,7 @@
                               image:    currentValue.images.preview_webp,
                             });
 
-                            // populate app.data with values for the gif-info page
+                            // Populate app.data with values for the gif-info page
                             app.data[currentValue.id] = {
                               bigImg:   currentValue.images.downsized_large.url,
                               postDate: currentValue.import_datetime,
@@ -250,6 +255,5 @@
             elements.sections.$img_post_date.innerHTML  = postDate;
 
         }
-    };
-    app.init();
+    }
 })();
