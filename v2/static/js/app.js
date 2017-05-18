@@ -181,18 +181,19 @@
         ===================== */
 
         getQueryType: function() {
-
+            var queryType;
             // Set the query type to "gifs" if gifs checkbox is selected
             if (elements.form.$gif_selector.checked) {
-                var queryType = "gifs";
+                queryType = "gifs";
                 console.log('User selected GIFS');
                 return queryType;
 
                 // Set the query type to "stickers" if stickers checkbox is selected
             } else if (elements.form.$sticker_selector.checked) {
-                var queryType = "stickers";
+                queryType = "stickers";
                 console.log('User selected STICKERS');
                 return queryType;
+
             } else {
               console.log('Error! No query type selected. Please select GIFS or STICKERS.');
             }
