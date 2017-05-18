@@ -104,8 +104,8 @@ a {
   align-items: center;
 }
 
-#error {
-  margin: 0 auto;
+.error{
+  margin: 2em auto;
 }
 
 #img-container img {

@@ -1,23 +1,10 @@
-// Door Tristan Jacobs
-// With some help of the one and only Dave Bitter
-
-// Object Oriented, bitches!
-// #justlikejava
-
-// Libraries used:
-// - Aja.js
-// - Routie.js
-// - Transparency.js
+// By Tristan Jacobs
 
 // TO DO:
 
-// X Alles in objecten met methods in plaats van floating functions.
-// X Gebruik de patterns van het vak, zie Slack.
 // - Diagram moet meer USER FLOW tonen; welke gebruikers interacties triggeren welke functionaliteiten?
 // - User Feedback: Wat gebeurt er als de data niet geladen kan worden? Ofs als de zoekterm niet herkend wordt?
 // - Deployen
-// X Filter functionaliteit inbouwen (.filter(), .map(), .reduce() .sort() moeten er in ieder geval inzitten, of het nut heeft of niet)
-//
 // =============================================
 
 (function() {
@@ -49,8 +36,12 @@
             $img_source:        utils.$('#img-source'),
             $img_post_date:     utils.$('#img-posted-on'),
             $start:             utils.$('#start'),
-            $result_area:       utils.$('#results'),
-            $error:             utils.$('#error')
+            $result_area:       utils.$('#results')
+        },
+
+        errors: {
+            $nothingFound:      utils.$('#error_nothing_found'),
+            $noData:            utils.$('#error_no_data')
         },
 
         form: {
@@ -128,7 +119,7 @@
         ===================== */
 
         doApiCall: function(url) {
-      
+
             // Empty the result area
             elements.sections.$result_area.innerHTML = '';
             // Toggle the loading spinner
@@ -149,15 +140,15 @@
                         var response = JSON.parse(request.responseText).data.reduce(
                           function(accumulator, currentValue) {
                             accumulator.push({
-                              id: currentValue.id,
-                              image: currentValue.images.preview_webp,
+                              id:       currentValue.id,
+                              image:    currentValue.images.preview_webp,
                             });
 
                             // populate app.data with values for the gif-info page
                             app.data[currentValue.id] = {
-                              bigImg: currentValue.images.downsized_large.url,
+                              bigImg:   currentValue.images.downsized_large.url,
                               postDate: currentValue.import_datetime,
-                              source: currentValue.source_post_url
+                              source:   currentValue.source_post_url
                             }
 
                             return accumulator;
@@ -173,12 +164,12 @@
                           console.log('No data..');
                           elements.toggleSpinner();
 
-                          // Show error message on page if there is no data
-                          elements.sections.$error.classList.remove('hidden');
+                          // Show error message on page if there is no data found
+                          elements.errors.$nothingFound.classList.remove('hidden');
 
                         } else {
 
-                          elements.sections.$error.classList.add('hidden');
+                          elements.errors.$nothingFound.classList.add('hidden');
                           console.log('Data found!');
                           elements.toggleSpinner();
 
@@ -186,11 +177,10 @@
                           app.renderData(response);
                         }
                     } else {
-                        console.log("Error!");
+                        // Show error when the request fails
+                        console.log("Error: " + request.statusText);
+                        elements.errors.$noData.classList.toggle('hidden');
                     }
-                };
-                request.onerror = function(err) {
-                    console.log('Error making connection: ' + err);
                 };
                 request.send();
             }, 1000)
