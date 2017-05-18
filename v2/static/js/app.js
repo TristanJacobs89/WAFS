@@ -1,11 +1,5 @@
 // By Tristan Jacobs
 
-// TO DO:
-
-// - Diagram moet meer USER FLOW tonen; welke gebruikers interacties triggeren welke functionaliteiten?
-// - Deployen
-// =============================================
-
 (function() {
     "use strict";
 
@@ -14,7 +8,7 @@
 
     var api_config = {
       KEY: "dc6zaTOxFJmzC",
-      URL: "http://api.giphy.com/v1/"
+      URL: "https://api.giphy.com/v1/"
     };
 
 /* UTILITIES
