@@ -174,7 +174,7 @@
                           app.renderData(response);
                         }
                     } else {
-                        console.log("Error!");
+                        console.log("Error: " + request.statusText);
                     }
                 };
                 request.onerror = function(err) {
