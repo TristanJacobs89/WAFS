@@ -7,13 +7,13 @@ Deze repo bevat de SPA voor het vak Web App From Scratch van de HvA Minor Web De
 In deze repo vind je onder anderen de code van de opdrachten, research naar libraries/frameworks en bronnen.
 
 ## Link naar App
-<https://iamt.nl/minor/wafs> NOG NIET LIVE!
+<https://iamt.nl/minor/wafs>
 
 ## De App
 De gebruiker kan met de webapplicatie zoeken naar stickers of GIFS. Deze afbeeldingen worden dan live opgehaald uit de Giphy API.
 
 ## Gebruik
-Gebruik de zoekbalk om te zoeken naar een onderwerp. Selecteer of je GIFs of stickers te zien wilt krijgen en klik op het vergrootglas.
+Gebruik de zoekbalk om te zoeken naar een onderwerp. Selecteer of je GIFs of stickers te zien wilt krijgen en klik op het de zoek knop. Klik daarna op een GIF of sticker om wat meer details te zien.
 
 ## Wishlist
 - Nieuw design
