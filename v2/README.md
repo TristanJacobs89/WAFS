@@ -17,7 +17,7 @@ Deze chart toont de objecten, properties en methods die in de app gebruikt worde
 ![Object Chart](https://github.com/SadisticSun/WAFS/blob/develop/v2/object-diagram.png)
 
 ## User Flow
-Dit diagram toont de flow waarde app doorheen gaat bij gebruik.
+Dit diagram toont de flow waar de app doorheen gaat bij gebruik.
 ![User Flow Diagram](https://github.com/SadisticSun/WAFS/blob/develop/v2/user-flow.png)
 
 ## Wishlist
